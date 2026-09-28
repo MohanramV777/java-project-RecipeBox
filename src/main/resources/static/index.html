@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecipeBox</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <div class="brand">
+        <div class="logo">R</div>
+        <div>
+            <h1>RecipeBox</h1>
+            <p>Personal recipe & meal planner</p>
+        </div>
+    </div>
+    <div class="user-box">
+        <label for="userSelect">User</label>
+        <select id="userSelect"></select>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div>
+            <span class="eyebrow">WEEKLY KITCHEN</span>
+            <h2>Plan the week before the week plans you.</h2>
+            <p>Keep recipes, ingredients and your weekly meals in one place.</p>
+        </div>
+        <button id="newRecipeBtn" class="primary">+ New recipe</button>
+    </section>
+
+    <section class="toolbar">
+        <input id="search" type="search" placeholder="Search recipes or cuisine">
+        <button id="allBtn" class="filter active">All recipes</button>
+        <button id="favBtn" class="filter">Favorites</button>
+        <button id="refreshBtn" class="filter">Refresh</button>
+    </section>
+
+    <section class="layout">
+        <div>
+            <div class="section-title">
+                <h3>My recipes</h3>
+                <span id="recipeCount">0 recipes</span>
+            </div>
+            <div id="recipeGrid" class="recipe-grid"></div>
+        </div>
+
+        <aside class="planner">
+            <div class="section-title">
+                <h3>Weekly plan</h3>
+                <button id="shoppingBtn" class="small">Shopping list</button>
+            </div>
+            <label class="date-label">Week of</label>
+            <input id="weekDate" type="date">
+            <div id="mealList"></div>
+        </aside>
+    </section>
+</main>
+
+<div id="modal" class="modal hidden">
+    <div class="modal-card">
+        <div class="modal-head">
+            <h3 id="modalTitle">New recipe</h3>
+            <button id="closeModal" class="icon-btn">×</button>
+        </div>
+        <form id="recipeForm">
+            <input type="hidden" id="recipeId">
+            <div class="two">
+                <label>Recipe name<input id="title" required></label>
+                <label>Cuisine<input id="cuisine" required placeholder="South Indian"></label>
+            </div>
+            <div class="two">
+                <label>Prep time (minutes)<input id="prepMinutes" type="number" min="0" value="20" required></label>
+                <label>Servings<input id="servings" type="number" min="0" step="0.5" value="2" required></label>
+            </div>
+            <label>Steps<textarea id="steps" rows="4" required></textarea></label>
+
+            <div class="ingredients-head">
+                <h4>Ingredients</h4>
+                <button type="button" id="addIngredient" class="small">+ Add</button>
+            </div>
+            <div id="ingredientRows"></div>
+
+            <div class="modal-actions">
+                <button type="button" id="cancelBtn" class="filter">Cancel</button>
+                <button type="submit" class="primary">Save recipe</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="planModal" class="modal hidden">
+    <div class="modal-card compact">
+        <div class="modal-head">
+            <h3>Plan a meal</h3>
+            <button id="closePlanModal" class="icon-btn">×</button>
+        </div>
+        <form id="planForm">
+            <input type="hidden" id="planDate">
+            <label>Date<input id="planDateInput" type="date" required></label>
+            <label>Meal type
+                <select id="mealType">
+                    <option>BREAKFAST</option>
+                    <option>LUNCH</option>
+                    <option>DINNER</option>
+                    <option>SNACK</option>
+                </select>
+            </label>
+            <label>Recipe<select id="planRecipe" required></select></label>
+            <div class="modal-actions">
+                <button type="button" id="cancelPlan" class="filter">Cancel</button>
+                <button type="submit" class="primary">Add to plan</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="shoppingModal" class="modal hidden">
+    <div class="modal-card compact">
+        <div class="modal-head">
+            <h3>Shopping list</h3>
+            <button id="closeShopping" class="icon-btn">×</button>
+        </div>
+        <p class="muted">Combined quantities for the selected week.</p>
+        <div id="shoppingList"></div>
+    </div>
+</div>
+
+<div id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
