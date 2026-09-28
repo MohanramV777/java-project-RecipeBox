@@ -5,3 +5,8 @@ target/
 .project
 .settings/
 .env
+src/main/java/com/recipebox/controller
+src/main/java/com/recipebox/exception
+src/main/java/com/recipebox/model
+src/main/java/com/recipebox/repository
+src/main/java/com/recipebox/service
